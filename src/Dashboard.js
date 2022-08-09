@@ -113,15 +113,20 @@ const Dashboard = () => {
 
     return (
         <div className='overflow-x-auto relative'>
-            <h1 className='text-l text-center p-2 flex flex-col items-center justify-center'>
+            <h1 className='text-l text-center p-2 flex items-center justify-between bg-wheat-300'>
                 Hello {localStorage.getItem("username")}
-                <span>Uploaded Resume: { selectedFile.name }</span>
-                <input type="file" name="file" style={{display:'none'}} onChange={handleChange} ref={hiddenFileInput} />
-                <button onClick={handleClick} className='bg-blue-300 rounded p-2 text-black w-64'> Upload Latest Resume </button>
+                <div className='flex flex-col'>
+                    <input type="file" name="file" style={{display:'none'}} onChange={handleChange} ref={hiddenFileInput} />
+                    <button onClick={handleClick} className='bg-blue-300 rounded p-2 text-black w-64'> Upload Latest Resume </button>
+                    {selectedFile!==undefined && selectedFile!=="" ? <span>Uploaded Resume: { selectedFile.name }</span> : ""}
+
+                </div>
             </h1>            
-            <h1 className='text-l text-center p-6'>List of Jobs available</h1>
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+                    <tr>
+                        <td colSpan = "3" className='text-lg font-bold text-center w-full'>List of Jobs available</td>
+                    </tr>                    
                     <tr>
                     <th scope="col" className="py-3 px-6">Company</th>
                     <th scope="col" className="py-3 px-6">Job Description</th>
